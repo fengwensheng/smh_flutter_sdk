@@ -14,4 +14,4 @@ dependencies:
   connectivity_plus:
   crypto:
   intl:
-  package_info_plus: ^4.2.0
+  package_info_plus:

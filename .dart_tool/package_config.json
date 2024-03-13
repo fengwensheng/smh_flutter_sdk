@@ -135,9 +135,9 @@
     },
     {
       "name": "package_info_plus",
-      "rootUri": "file:///D:/Pub/hosted/mirrors.tuna.tsinghua.edu.cn%2547dart-pub%2547/package_info_plus-4.2.0",
+      "rootUri": "file:///D:/Pub/hosted/mirrors.tuna.tsinghua.edu.cn%2547dart-pub%2547/package_info_plus-5.0.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "package_info_plus_platform_interface",
@@ -230,7 +230,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2024-03-13T01:43:11.745329Z",
+  "generated": "2024-03-13T01:54:11.312557Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
