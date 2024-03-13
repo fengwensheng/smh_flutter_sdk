@@ -46,10 +46,10 @@ class SMHRetryInterceptor extends QueuedInterceptorsWrapper {
     return response;
   }
 
-  static bool shouldRetry(DioError err) {
-    bool isNoNet =
-        (err.type == DioErrorType.other && (err.error is SocketException));
-    bool need = isNoNet || err.type == DioErrorType.connectTimeout;
+  static bool shouldRetry(DioException err) {
+    bool isNoNet = (err.type == DioExceptionType.unknown &&
+        (err.error is SocketException));
+    bool need = isNoNet || err.type == DioExceptionType.connectionTimeout;
     return need;
   }
 }

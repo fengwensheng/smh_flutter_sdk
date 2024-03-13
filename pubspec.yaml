@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio:
+  dio: ^5.4.1
   crclib:
   convert:
   connectivity_plus:

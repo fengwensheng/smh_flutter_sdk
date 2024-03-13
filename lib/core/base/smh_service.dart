@@ -56,7 +56,7 @@ class SMHService {
       'connection': 'keep-alive',
       'user-agent': userAgent,
     };
-    dio.options.connectTimeout = 30000;
+    dio.options.connectTimeout = Duration(milliseconds: 30000);
   }
 
   get baseUrl {
@@ -120,13 +120,13 @@ class SMHService {
     return result;
   }
 
-  SMHError errorFactory(DioError error) {
+  SMHError errorFactory(DioException error) {
     SMHError smhError = SMHError();
     smhError.statusCode = error.response?.statusCode;
     smhError.statusMessage = error.response?.statusMessage;
 
     if (error.error is HttpException) {
-      HttpException ex = error.error;
+      HttpException ex = error.error as HttpException;
       smhError.statusMessage = ex.message;
     }
 

@@ -980,8 +980,8 @@ class SMHApiTransferApis {
         queryParameters: queryParameters,
         cancelToken: cancelToken,
       );
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.response) {
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse) {
         e.response!.data = null;
       }
       rethrow;
@@ -1043,7 +1043,7 @@ class SMHApiTransferApis {
           try {
             await subscription.cancel();
           } finally {
-            completer.completeError(DioMixin.assureDioError(
+            completer.completeError(DioMixin.assureDioException(
               err,
               response.requestOptions,
             ));
@@ -1057,7 +1057,7 @@ class SMHApiTransferApis {
           await raf.close();
           completer.complete(response);
         } catch (e) {
-          completer.completeError(DioMixin.assureDioError(
+          completer.completeError(DioMixin.assureDioException(
             e,
             response.requestOptions,
           ));
@@ -1067,7 +1067,7 @@ class SMHApiTransferApis {
         try {
           await _closeAndDelete();
         } finally {
-          completer.completeError(DioMixin.assureDioError(
+          completer.completeError(DioMixin.assureDioException(
             e,
             response.requestOptions,
           ));
@@ -1081,11 +1081,12 @@ class SMHApiTransferApis {
       await _closeAndDelete();
     });
 
-    if (response.requestOptions.receiveTimeout > 0) {
+    if (response.requestOptions.receiveTimeout != null &&
+        response.requestOptions.receiveTimeout!.inMilliseconds > 0) {
       future = future
-          .timeout(Duration(
-        milliseconds: response.requestOptions.receiveTimeout,
-      ))
+          .timeout(
+        response.requestOptions.receiveTimeout!,
+      )
           .catchError((Object err) async {
         await subscription.cancel();
         await _closeAndDelete();
